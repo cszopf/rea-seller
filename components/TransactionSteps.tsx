@@ -126,47 +126,73 @@ export const TransactionContent: React.FC<StepProps> = ({
   switch (step) {
     case TransactionStep.PREFERENCE:
       return (
-        <div className="animate-in fade-in zoom-in-95 duration-700 max-w-2xl mx-auto text-center py-4">
-          <div className="mb-8">
-            <h2 className="font-header text-3xl text-[#004EA8] mb-4">Welcome to Your Transaction Portal</h2>
-            <p className="text-slate-600 font-subheader leading-relaxed">How would you like to experience your closing? You can change this at any time.</p>
+        <div className="animate-in fade-in zoom-in-95 duration-700 max-w-2xl mx-auto text-center py-4 px-2">
+          {/* Brand Identity Section */}
+          <div className="mb-8 md:mb-12">
+            <h1 className="font-header uppercase-tracking-150 text-xl md:text-3xl mb-2" style={{ color: brand.primaryColor }}>
+              {brand.logoName}
+            </h1>
+            <div className="w-12 h-1 bg-[#64CCC9] mx-auto rounded-full mb-6"></div>
+            <h2 className="font-header text-2xl md:text-4xl text-slate-900 mb-3 tracking-tight">Your Closing Experience</h2>
+            <p className="text-slate-500 font-subheader text-sm md:text-lg leading-relaxed max-w-md mx-auto">
+              We process every file with institutional precision. Choose how you'd like to stay informed.
+            </p>
           </div>
-          <div className="grid grid-cols-1 gap-4 mb-10">
+
+          <div className="grid grid-cols-1 gap-3 md:gap-5 mb-10">
             {[
               { 
                 id: ExplanatoryPreference.SIMPLE, 
-                title: 'Minimalist (Simple)', 
-                desc: 'Just the essentials. Minimal reading, fast actions.' 
+                title: 'Minimalist', 
+                tagline: 'Just the Essentials',
+                desc: 'Minimal reading, focus on speed and tasks.' 
               },
               { 
                 id: ExplanatoryPreference.STANDARD, 
-                title: 'Professional (Standard)', 
-                desc: 'A balanced overview of every major milestone.' 
+                title: 'Professional', 
+                tagline: 'Standard Transparency',
+                desc: 'A clear overview of major milestones and timelines.' 
               },
               { 
                 id: ExplanatoryPreference.COMPLETE, 
-                title: 'Institutional (Complete)', 
-                desc: 'Full transparency. Deep dives into backend audits and title law.' 
+                title: 'Institutional', 
+                tagline: 'Complete Audit Trail',
+                desc: 'Deep dives into title law and backend processes.' 
               }
             ].map((opt) => (
               <button
                 key={opt.id}
                 onClick={() => setPreference(opt.id)}
-                className={`p-6 text-left rounded-3xl border-2 transition-all ${preference === opt.id ? 'border-[#004EA8] bg-blue-50/50 shadow-lg' : 'border-slate-100 hover:border-slate-200 bg-white'}`}
+                className={`p-5 md:p-8 text-left rounded-[24px] md:rounded-[32px] border-2 transition-all relative overflow-hidden group ${preference === opt.id ? 'border-[#004EA8] bg-blue-50/30 shadow-xl' : 'border-slate-100 hover:border-slate-200 bg-white shadow-sm'}`}
               >
-                <div className="flex justify-between items-center">
-                  <div>
-                    <h3 className="font-black text-slate-900 uppercase tracking-tighter mb-1">{opt.title}</h3>
-                    <p className="text-xs text-slate-500 leading-relaxed">{opt.desc}</p>
+                {preference === opt.id && (
+                  <div className="absolute top-0 right-0 px-4 py-1.5 bg-[#004EA8] text-white text-[7px] font-black uppercase tracking-widest rounded-bl-xl">
+                    Selected
                   </div>
-                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${preference === opt.id ? 'border-[#004EA8] bg-[#004EA8]' : 'border-slate-200'}`}>
-                    {preference === opt.id && <div className="w-1.5 h-1.5 bg-white rounded-full"></div>}
+                )}
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h3 className="font-black text-slate-900 uppercase tracking-tighter text-base md:text-lg mb-0.5">{opt.title}</h3>
+                    <p className="text-[#004EA8] text-[8px] md:text-[9px] font-black uppercase tracking-[0.2em] mb-2">{opt.tagline}</p>
+                    <p className="text-xs text-slate-500 leading-relaxed md:max-w-xs">{opt.desc}</p>
+                  </div>
+                  <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0 mt-1 ${preference === opt.id ? 'border-[#004EA8] bg-[#004EA8]' : 'border-slate-200 group-hover:border-slate-300'}`}>
+                    {preference === opt.id && <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"/></svg>}
                   </div>
                 </div>
               </button>
             ))}
           </div>
-          <Button label="Enter Transaction" onClick={onNext} primary brand={brand} className="w-full md:w-auto" />
+          
+          <button 
+            onClick={onNext}
+            className="w-full md:w-auto px-12 py-5 rounded-2xl text-white font-black text-xs tracking-[0.3em] uppercase transition-all shadow-xl active:scale-95 bg-[#004EA8]"
+          >
+            Start Closing
+          </button>
+          <p className="mt-6 text-[10px] text-slate-400 font-bold uppercase tracking-widest">
+            Institutional Steward: {brand.legalName}
+          </p>
         </div>
       );
 

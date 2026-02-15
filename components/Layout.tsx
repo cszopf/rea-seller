@@ -109,18 +109,18 @@ const Layout: React.FC<LayoutProps> = ({ brand, agent, children, propertyAddress
           {children}
         </div>
 
-        {/* Mobile Role Toggle - Tucked in the Bottom-Left corner, away from main actions */}
-        <div className="md:hidden fixed bottom-[calc(env(safe-area-inset-bottom,0px)+3.5rem)] left-4 z-[60]">
-           <div className="bg-white/90 backdrop-blur-md border border-slate-200 rounded-full p-0.5 flex gap-0.5 shadow-lg shadow-slate-200/40 opacity-80 hover:opacity-100 transition-opacity">
+        {/* Mobile Role Toggle - Absolute bottom-left corner to be as unobtrusive as possible */}
+        <div className="md:hidden fixed bottom-[calc(env(safe-area-inset-bottom,0px)+0.75rem)] left-3 z-[60]">
+           <div className="bg-slate-100/80 backdrop-blur-md border border-slate-200 rounded-full p-0.5 flex gap-0.5 shadow-sm opacity-60 hover:opacity-100 transition-opacity">
               <button 
                 onClick={() => setRole(UserRole.SELLER)}
-                className={`px-3 py-1 text-[7px] font-black uppercase tracking-widest rounded-full transition-all ${role === UserRole.SELLER ? 'bg-slate-900 text-white' : 'text-slate-500'}`}
+                className={`px-3 py-1 text-[6px] font-black uppercase tracking-widest rounded-full transition-all ${role === UserRole.SELLER ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-500'}`}
               >
                 Seller
               </button>
               <button 
                 onClick={() => setRole(UserRole.AGENT)}
-                className={`px-3 py-1 text-[7px] font-black uppercase tracking-widest rounded-full transition-all ${role === UserRole.AGENT ? 'bg-slate-900 text-white' : 'text-slate-500'}`}
+                className={`px-3 py-1 text-[6px] font-black uppercase tracking-widest rounded-full transition-all ${role === UserRole.AGENT ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-500'}`}
               >
                 Agent
               </button>
@@ -130,7 +130,7 @@ const Layout: React.FC<LayoutProps> = ({ brand, agent, children, propertyAddress
       
       {/* Mobile Agent Footer (Sticky) */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 p-2.5 pt-2 pb-[env(safe-area-inset-bottom,0.5rem)] flex items-center justify-between z-50 shadow-[0_-8px_30px_rgba(0,0,0,0.05)] backdrop-blur-md bg-white/95">
-         <div className="flex items-center gap-2">
+         <div className="flex items-center gap-2 pl-12 md:pl-0"> {/* Padding to accommodate role switcher if needed */}
             <div className="relative">
               <img src={agent.image} className="w-8 h-8 rounded-lg border border-slate-100 shadow-sm" alt={agent.name} />
               {agent.isVerified && (
