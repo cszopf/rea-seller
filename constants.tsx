@@ -1,3 +1,4 @@
+
 import { BrandConfig, AgentInfo } from './types';
 
 export const WCT_BRAND: BrandConfig = {
@@ -46,5 +47,5 @@ export const REAL_PROPERTY_MOCK = {
   buyerName: "DOUGLAS & CARA O'CONNOR",
   sellerName: "PATRICK T. O'LAUGHLIN, TRUSTEE",
   lender: "LOWER, LLC",
-  closingDate: "11/18/2025"
+  closingDate: "02/18/2026"
 };

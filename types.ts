@@ -12,14 +12,15 @@ export interface BrandConfig {
 }
 
 export enum TransactionStep {
+  MODE_SELECT = 0,
   STARTED = 1,
   IDENTITY = 2,
-  DOCUMENTS = 3,
-  SEARCH = 4,
-  CLEARING = 5,
-  SCHEDULE = 6,
-  SUMMARY = 7,
-  CLOSED = 8
+  DOCUMENTATION = 3,
+  TITLE_SEARCH = 4,
+  CURATIVE = 5,
+  SCHEDULING = 6,
+  SETTLEMENT = 7,
+  SUMMARY = 8
 }
 
 export type ExperienceLevel = 'simple' | 'standard' | 'thorough';
