@@ -92,21 +92,6 @@ const App: React.FC = () => {
           </span>
         </button>
       </div>
-
-      <div className="fixed bottom-6 left-6 z-[100] bg-white p-3 rounded-2xl shadow-xl border border-slate-200 hidden lg:block">
-        <p className="text-[8px] font-black text-slate-400 uppercase tracking-widest mb-2">Access Portal</p>
-        <div className="flex gap-2">
-          {(['seller', 'agent'] as UserRole[]).map(r => (
-            <button 
-              key={r}
-              onClick={() => { setRole(r); if(r === 'agent') setInDashboard(true); }}
-              className={`px-3 py-1 text-[8px] font-black uppercase rounded-lg border transition-all ${role === r ? 'bg-slate-900 text-white border-slate-900' : 'bg-white text-slate-400 border-slate-200'}`}
-            >
-              {r}
-            </button>
-          ))}
-        </div>
-      </div>
     </div>
   );
 };
