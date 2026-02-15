@@ -16,7 +16,14 @@ export enum UserRole {
   AGENT = 'AGENT'
 }
 
+export enum ExplanatoryPreference {
+  SIMPLE = 'SIMPLE',
+  STANDARD = 'STANDARD',
+  COMPLETE = 'COMPLETE'
+}
+
 export enum TransactionStep {
+  PREFERENCE = 0,
   STARTED = 1,
   IDENTITY = 2,
   DOCUMENTS = 3,

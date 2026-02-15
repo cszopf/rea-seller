@@ -5,15 +5,16 @@ import { TransactionContent } from './components/TransactionSteps';
 import SmartOneDashboard from './components/SmartOneDashboard';
 import AgentTransparencyView from './components/AgentTransparencyView';
 import ChatWidget from './components/ChatWidget';
-import { TransactionStep, BrandConfig, UserRole } from './types';
+import { TransactionStep, BrandConfig, UserRole, ExplanatoryPreference } from './types';
 import { WCT_BRAND, MOCK_AGENT, REAL_PROPERTY_MOCK } from './constants';
 
 const App: React.FC = () => {
-  const [currentStep, setCurrentStep] = useState<TransactionStep>(TransactionStep.STARTED);
+  const [currentStep, setCurrentStep] = useState<TransactionStep>(TransactionStep.PREFERENCE);
   const [brand] = useState<BrandConfig>(WCT_BRAND);
   const [inDashboard, setInDashboard] = useState(false);
   const [simulatedDays, setSimulatedDays] = useState(90);
   const [role, setRole] = useState<UserRole>(UserRole.SELLER);
+  const [preference, setPreference] = useState<ExplanatoryPreference>(ExplanatoryPreference.STANDARD);
   
   // Seller Opt-ins
   const [optInSmartOne, setOptInSmartOne] = useState(false);
@@ -42,7 +43,7 @@ const App: React.FC = () => {
       setInDashboard(false);
       setCurrentStep(TransactionStep.CLOSED);
     } else {
-      setCurrentStep((prev) => Math.max(prev - 1, TransactionStep.STARTED) as TransactionStep);
+      setCurrentStep((prev) => Math.max(prev - 1, TransactionStep.PREFERENCE) as TransactionStep);
     }
   };
 
@@ -56,6 +57,8 @@ const App: React.FC = () => {
         <TransactionContent 
           step={currentStep} 
           brand={brand} 
+          preference={preference}
+          setPreference={setPreference}
           onNext={handleNext} 
           onBack={handleBack}
           optInSmartOne={optInSmartOne}
