@@ -3,32 +3,25 @@ import React, { useState, useEffect } from 'react';
 import Layout from './components/Layout';
 import { TransactionContent } from './components/TransactionSteps';
 import SmartOneDashboard from './components/SmartOneDashboard';
-import AgentTransparencyView from './components/AgentTransparencyView';
 import ChatWidget from './components/ChatWidget';
-import { TransactionStep, BrandConfig, UserRole, ExplanatoryPreference } from './types';
+import { TransactionStep, BrandConfig, ExperienceLevel, UserRole } from './types';
 import { WCT_BRAND, MOCK_AGENT, REAL_PROPERTY_MOCK } from './constants';
 
 const App: React.FC = () => {
-  const [currentStep, setCurrentStep] = useState<TransactionStep>(TransactionStep.PREFERENCE);
+  const [currentStep, setCurrentStep] = useState<TransactionStep>(TransactionStep.STARTED);
   const [brand] = useState<BrandConfig>(WCT_BRAND);
   const [inDashboard, setInDashboard] = useState(false);
-  const [simulatedDays, setSimulatedDays] = useState(90);
-  const [role, setRole] = useState<UserRole>(UserRole.SELLER);
-  const [preference, setPreference] = useState<ExplanatoryPreference>(ExplanatoryPreference.STANDARD);
   
-  // Seller Opt-ins
-  const [optInSmartOne, setOptInSmartOne] = useState(false);
+  // Experience Settings (for demo purposes)
+  const [expLevel, setExpLevel] = useState<ExperienceLevel>('standard');
+  const [role, setRole] = useState<UserRole>('seller');
 
-  // Automatic Scroll to Top on Step Change or Role Change
+  const sellerName = "Patrick";
+
+  // Automatic Scroll to Top on Step/Mode Change
   useEffect(() => {
-    const mainContent = document.querySelector('main');
-    if (mainContent) {
-      mainContent.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    }
-  }, [currentStep, inDashboard, role]);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [currentStep, inDashboard, expLevel, role]);
 
   const handleNext = () => {
     if (currentStep === TransactionStep.CLOSED) {
@@ -43,50 +36,69 @@ const App: React.FC = () => {
       setInDashboard(false);
       setCurrentStep(TransactionStep.CLOSED);
     } else {
-      setCurrentStep((prev) => Math.max(prev - 1, TransactionStep.PREFERENCE) as TransactionStep);
+      setCurrentStep((prev) => Math.max(prev - 1, TransactionStep.STARTED) as TransactionStep);
     }
-  };
-
-  const renderContent = () => {
-    if (role === UserRole.AGENT) {
-      return <AgentTransparencyView brand={brand} agent={MOCK_AGENT} />;
-    }
-
-    if (!inDashboard) {
-      return (
-        <TransactionContent 
-          step={currentStep} 
-          brand={brand} 
-          preference={preference}
-          setPreference={setPreference}
-          onNext={handleNext} 
-          onBack={handleBack}
-          optInSmartOne={optInSmartOne}
-          setOptInSmartOne={setOptInSmartOne}
-        />
-      );
-    }
-
-    return (
-      <SmartOneDashboard 
-        brand={brand} 
-        agent={MOCK_AGENT} 
-        daysRemaining={simulatedDays}
-      />
-    );
   };
 
   return (
-    <Layout 
-      brand={brand} 
-      agent={MOCK_AGENT} 
-      propertyAddress={`${REAL_PROPERTY_MOCK.address} | ${REAL_PROPERTY_MOCK.cityStateZip}`}
-      role={role}
-      setRole={setRole}
-    >
-      {renderContent()}
-      <ChatWidget brand={brand} />
-    </Layout>
+    <div className="relative">
+      <Layout 
+        brand={brand} 
+        agent={MOCK_AGENT} 
+        propertyAddress={REAL_PROPERTY_MOCK.address}
+        role={role}
+        userName={sellerName}
+      >
+        {!inDashboard ? (
+          <TransactionContent 
+            step={currentStep} 
+            brand={brand} 
+            onNext={handleNext} 
+            onBack={handleBack}
+          />
+        ) : (
+          <SmartOneDashboard 
+            brand={brand} 
+            agent={MOCK_AGENT} 
+            level={expLevel}
+            role={role}
+          />
+        )}
+
+        <ChatWidget brand={brand} />
+      </Layout>
+
+      {/* Experience Toggle (Demo UI - Bottom Left) */}
+      <div className="fixed bottom-6 left-6 z-[100] bg-white p-4 rounded-2xl shadow-2xl border border-slate-200 hidden lg:block">
+        <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-3">Dev Experience Toggle</p>
+        <div className="flex flex-col gap-2">
+          <div className="flex gap-2">
+            {(['seller', 'agent'] as UserRole[]).map(r => (
+              <button 
+                key={r}
+                onClick={() => setRole(r)}
+                className={`px-3 py-1 text-[8px] font-black uppercase rounded-lg border transition-all ${role === r ? 'bg-slate-900 text-white border-slate-900' : 'bg-white text-slate-400 border-slate-200'}`}
+              >
+                {r}
+              </button>
+            ))}
+          </div>
+          {role === 'seller' && (
+            <div className="flex gap-2 border-t border-slate-100 pt-2">
+              {(['simple', 'standard', 'thorough'] as ExperienceLevel[]).map(l => (
+                <button 
+                  key={l}
+                  onClick={() => setExpLevel(l)}
+                  className={`px-3 py-1 text-[8px] font-black uppercase rounded-lg border transition-all ${expLevel === l ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-400 border-slate-200'}`}
+                >
+                  {l}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
   );
 };
 

@@ -11,19 +11,7 @@ export interface BrandConfig {
   legalName: string;
 }
 
-export enum UserRole {
-  SELLER = 'SELLER',
-  AGENT = 'AGENT'
-}
-
-export enum ExplanatoryPreference {
-  SIMPLE = 'SIMPLE',
-  STANDARD = 'STANDARD',
-  COMPLETE = 'COMPLETE'
-}
-
 export enum TransactionStep {
-  PREFERENCE = 0,
   STARTED = 1,
   IDENTITY = 2,
   DOCUMENTS = 3,
@@ -33,6 +21,9 @@ export enum TransactionStep {
   SUMMARY = 7,
   CLOSED = 8
 }
+
+export type ExperienceLevel = 'simple' | 'standard' | 'thorough';
+export type UserRole = 'seller' | 'agent';
 
 export interface AgentInfo {
   name: string;
