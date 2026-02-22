@@ -40,7 +40,7 @@ const SimpleSellerView: React.FC<{ brand: BrandConfig }> = ({ brand }) => (
       <div className="bg-[#004EA8] rounded-[48px] p-12 text-center text-white shadow-2xl relative overflow-hidden">
         <p className="text-[#B9D9EB] text-xs font-black uppercase tracking-[0.3em] mb-4">Estimated Net Proceeds</p>
         <h3 className="text-6xl font-header tracking-tighter mb-4">$468,050</h3>
-        <span className="bg-[#64CCC9] text-[#004EA8] px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest">Fed Ref: #WCT-FED-4920</span>
+        <span className="bg-[#64CCC9] text-[#004EA8] px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest">Fed Ref: #ST1-FED-4920</span>
       </div>
     </div>
   </div>
@@ -127,7 +127,7 @@ const StandardSellerView: React.FC<{ brand: BrandConfig }> = ({ brand }) => {
                 <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
                 <div>
                   <p className="text-[10px] font-black uppercase tracking-[0.15em]">Fed Reference Number</p>
-                  <p className="text-sm font-mono font-bold tracking-tight text-white mt-0.5">#WCT-FED-4920-8812-7X</p>
+                  <p className="text-sm font-mono font-bold tracking-tight text-white mt-0.5">#ST1-FED-4920-8812-7X</p>
                 </div>
               </div>
             </div>
@@ -184,7 +184,7 @@ const ThoroughSellerView: React.FC<{ brand: BrandConfig }> = ({ brand }) => (
           <div className="w-10 h-10 rounded-xl bg-blue-500 flex items-center justify-center">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
           </div>
-          <h3 className="font-header text-xl tracking-tight">Property Integrity Audit #WCT-FRK-0492</h3>
+          <h3 className="font-header text-xl tracking-tight">Property Integrity Audit #ST1-FRK-0492</h3>
        </div>
        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           {[
@@ -205,149 +205,178 @@ const ThoroughSellerView: React.FC<{ brand: BrandConfig }> = ({ brand }) => (
 
 const AgentCommandCenter: React.FC<{ brand: BrandConfig; currentStep: TransactionStep }> = ({ brand, currentStep }) => {
   const steps = [
-    { id: TransactionStep.STARTED, label: 'Started', est: 'Feb 15' },
-    { id: TransactionStep.IDENTITY, label: 'Identity', est: 'Feb 15' },
-    { id: TransactionStep.DOCUMENTATION, label: 'Docs', est: 'Feb 16' },
-    { id: TransactionStep.TITLE_SEARCH, label: 'Search', est: 'Feb 16' },
-    { id: TransactionStep.CURATIVE, label: 'Curative', est: 'Feb 17' },
-    { id: TransactionStep.SCHEDULING, label: 'Schedule', est: 'Feb 17' },
-    { id: TransactionStep.SETTLEMENT, label: 'Settlement', est: 'Feb 18' },
-    { id: TransactionStep.SUMMARY, label: 'Summary', est: 'Feb 18' }
+    { label: 'Contract Received', responsible: 'AGENT', time: 'Feb 14, 8:00 AM', status: 'complete' },
+    { label: 'Lender Confirmed', responsible: 'BUYER', time: 'Feb 14, 8:45 AM', status: 'complete' },
+    { label: 'Identity Verified', responsible: 'BUYER', time: 'Feb 14, 9:42 AM', status: 'complete' },
+    { label: 'Title Search Ordered', responsible: 'TITLE', time: 'Feb 15, 10:00 AM', status: 'complete' },
+    { label: 'Earnest Money Received', responsible: 'BUYER', time: 'Feb 15, 2:10 PM', status: 'complete', sub: 'Awaiting Bank Verification' },
+    { label: 'Loan Status: Approved', responsible: 'LENDER', time: 'Feb 17, 11:00 AM', status: 'complete' },
+    { label: 'Closing Scheduled', responsible: 'TITLE', time: 'Feb 17, 3:00 PM', status: 'complete' },
+    { label: 'Closing Complete', responsible: 'TITLE', time: 'Feb 18, 10:00 AM', status: 'complete' }
   ];
 
   return (
-    <div className="space-y-8 animate-in fade-in duration-700 pb-20">
-      {/* Communication Actions */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="bg-white border border-slate-100 rounded-[32px] p-6 shadow-sm flex items-center justify-between group hover:border-blue-200 transition-colors">
+    <div className="animate-in fade-in duration-700 pb-20">
+      {/* Header Section */}
+      <div className="flex flex-col md:flex-row justify-between items-start mb-12 gap-8">
+        <div className="space-y-4">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-            </div>
-            <div>
-              <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">Title Partner</p>
-              <p className="font-bold text-slate-900">World Class Title</p>
-              <p className="text-xs text-slate-500 font-bold">5040 Pine Creek Dr, Westerville</p>
+            <div className="relative">
+              <svg className="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+              </svg>
+              <div className="absolute top-0 right-0 w-2 h-2 bg-blue-500 rounded-full border-2 border-white"></div>
             </div>
           </div>
-          <div className="flex gap-2">
-            <a href={`mailto:${brand.contactEmail}`} className="p-3 bg-blue-50 text-blue-600 rounded-2xl hover:bg-blue-600 hover:text-white transition-all">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-            </a>
-            <button className="p-3 bg-blue-50 text-blue-600 rounded-2xl hover:bg-blue-600 hover:text-white transition-all">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          <h1 className="text-5xl font-header text-slate-900 tracking-tighter uppercase">
+            {REAL_PROPERTY_MOCK.sellerName}
+          </h1>
+          <p className="text-xl font-bold text-slate-400 uppercase tracking-widest">
+            {REAL_PROPERTY_MOCK.address}
+          </p>
+          <div className="flex gap-4 pt-4">
+            <div className="bg-orange-50 text-orange-700 px-6 py-3 rounded-2xl border border-orange-100 flex items-center gap-3">
+              <div className="w-1.5 h-4 bg-orange-400 rounded-full"></div>
+              <span className="text-[10px] font-black uppercase tracking-widest">UNVERIFIED BY SMART</span>
+            </div>
+            <button className="bg-slate-900 text-white px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest leading-tight text-center">
+              CLICK TO<br/>BECOME VERIFIED
             </button>
           </div>
         </div>
-        <div className="bg-white border border-slate-100 rounded-[32px] p-6 shadow-sm flex items-center justify-between group hover:border-emerald-200 transition-colors">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+
+        <div className="grid grid-cols-2 gap-4 w-full md:w-auto">
+          {[
+            { label: 'CONTRACT DATE', value: REAL_PROPERTY_MOCK.contractDate },
+            { label: 'EST. CLOSING', value: REAL_PROPERTY_MOCK.closingDate, color: 'text-blue-600' },
+            { label: 'ESCROW OFFICER', value: 'Sarah Jenkins' },
+            { label: 'SMART CONCIERGE', value: 'Active' }
+          ].map((card, i) => (
+            <div key={i} className="bg-slate-50 border border-slate-100 p-6 rounded-[32px] min-w-[160px]">
+              <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-2">{card.label}</p>
+              <p className={`text-sm font-bold ${card.color || 'text-slate-900'}`}>{card.value}</p>
             </div>
-            <div>
-              <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">Seller (Client)</p>
-              <p className="font-bold text-slate-900">Patrick T. O'Laughlin</p>
-              <p className="text-xs text-slate-500 font-bold">Verified: Identity Shield Active</p>
-            </div>
-          </div>
-          <div className="flex gap-2">
-            <button className="p-3 bg-emerald-50 text-emerald-600 rounded-2xl hover:bg-emerald-600 hover:text-white transition-all">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-            </button>
-            <button className="p-3 bg-emerald-50 text-emerald-600 rounded-2xl hover:bg-emerald-600 hover:text-white transition-all">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
-            </button>
-          </div>
+          ))}
         </div>
       </div>
 
-      {/* Tracker Detail */}
-      <div className="bg-white border border-slate-100 rounded-[40px] p-8 shadow-sm">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
-           <div>
-              <h3 className="text-xl font-header tracking-tight text-slate-900">Real-Time Progress Detail</h3>
-              <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-1">Transaction ID: #WCT-FRK-0492</p>
-           </div>
-           <div className="flex flex-col items-end gap-2">
-              <div className="flex items-center gap-3 px-4 py-2 bg-slate-50 rounded-2xl border border-slate-100">
-                <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
-                <p className="text-[10px] font-black text-slate-600 uppercase tracking-widest">Expected In-Person Closing: Feb 18, 2026</p>
-              </div>
-              <button 
-                onClick={() => downloadClosingInvite('Feb 18 @ 10:00 AM')}
-                className="text-[10px] font-black text-blue-600 uppercase tracking-widest hover:underline flex items-center gap-1.5"
-              >
-                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                Sync to Calendar
-              </button>
-           </div>
-        </div>
-        
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-6">
-          {steps.map((step) => {
-            const isActive = step.id === currentStep;
-            const isCompleted = step.id < currentStep;
-            
-            return (
-              <div key={step.id} className="flex flex-col items-center group">
-                <div className={`w-12 h-12 rounded-2xl flex flex-col items-center justify-center transition-all duration-500 mb-4 relative ${
-                  isCompleted ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-500/20' : 
-                  isActive ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20 ring-4 ring-blue-50' : 
-                  'bg-slate-100 text-slate-400'
-                }`}>
-                  {isCompleted ? (
-                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/></svg>
-                  ) : (
-                    <span className="text-xs font-black">{step.id}</span>
-                  )}
-                  {/* Progress Line */}
-                  {!isCompleted && !isActive && (
-                    <div className="absolute -top-1 -right-1 w-2 h-2 bg-slate-200 rounded-full"></div>
-                  )}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        {/* Timeline Column */}
+        <div className="lg:col-span-7">
+          <div className="flex justify-between items-center mb-8">
+            <h3 className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] flex items-center gap-3">
+              <div className="w-1 h-6 bg-blue-500 rounded-full"></div>
+              SMART PROGRESS TIMELINE
+            </h3>
+            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">REAL-TIME SYNC: ACTIVE</span>
+          </div>
+
+          <div className="relative pl-12 space-y-6">
+            <div className="absolute left-[19px] top-4 bottom-4 w-0.5 bg-slate-100"></div>
+            {steps.map((step, i) => (
+              <div key={i} className="relative bg-white border border-slate-100 p-8 rounded-[32px] shadow-sm group hover:shadow-md transition-shadow">
+                <div className="absolute -left-[31px] top-1/2 -translate-y-1/2 w-4 h-4 bg-emerald-500 rounded-full border-4 border-white shadow-sm z-10"></div>
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h4 className="text-lg font-bold text-slate-900 mb-1">{step.label}</h4>
+                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                      RESPONSIBLE: {step.responsible} &nbsp;•&nbsp; {step.time}
+                    </p>
+                    {step.sub && (
+                      <p className="text-[10px] italic text-slate-400 mt-2">{step.sub}</p>
+                    )}
+                  </div>
+                  <span className="bg-emerald-50 text-emerald-600 px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest border border-emerald-100">
+                    COMPLETE
+                  </span>
                 </div>
-                <p className={`text-[10px] font-black uppercase tracking-widest text-center mb-1 ${
-                  isActive ? 'text-blue-600' : isCompleted ? 'text-emerald-600' : 'text-slate-400'
-                }`}>
-                  {step.label}
-                </p>
-                <p className="text-[8px] font-bold text-slate-400 uppercase">{step.est}</p>
               </div>
-            );
-          })}
+            ))}
+            
+            <div className="pt-12 flex justify-center">
+              <button className="px-12 py-4 rounded-full border-2 border-blue-600 text-blue-600 font-black text-[11px] uppercase tracking-widest hover:bg-blue-50 transition-all active:scale-95 shadow-sm">
+                RETURN TO SELLER JOURNEY
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
 
-      {/* Next Steps Card */}
-      <div className="bg-slate-900 rounded-[40px] p-10 text-white shadow-xl relative overflow-hidden">
-         <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full -mr-32 -mt-32"></div>
-         <div className="relative z-10">
-           <div className="flex items-center gap-4 mb-8">
-              <div className="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center">
-                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        {/* Right Column: Financial Monitor & Activity Journal */}
+        <div className="lg:col-span-5 space-y-12">
+          <div>
+            <h3 className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] flex items-center gap-3 mb-8">
+              <div className="w-1 h-6 bg-slate-900 rounded-full"></div>
+              FINANCIAL EVENT MONITOR
+            </h3>
+            <div className="bg-slate-50 border border-slate-100 rounded-[48px] p-10">
+              <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-8 text-center">LIVE FUNDING STATUS</p>
+              <div className="space-y-8">
+                {[
+                  { label: 'Earnest Money', time: 'Feb 15, 2:10 PM', status: 'CLEARED', color: 'bg-emerald-50 text-emerald-600 border-emerald-100' },
+                  { label: 'Lender Order', time: 'Feb 19, 11:20 AM', status: 'CLEARED', color: 'bg-emerald-50 text-emerald-600 border-emerald-100' },
+                  { label: 'Closing Wire', time: 'Scheduled', status: 'SCHEDULED', color: 'bg-slate-100 text-slate-400 border-slate-200' }
+                ].map((item, i) => (
+                  <div key={i} className="flex justify-between items-center">
+                    <div>
+                      <p className="font-bold text-slate-900">{item.label}</p>
+                      <p className="text-[10px] font-bold text-slate-400 uppercase mt-1">{item.time}</p>
+                    </div>
+                    <span className={`px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest border ${item.color}`}>
+                      {item.status}
+                    </span>
+                  </div>
+                ))}
               </div>
-              <h3 className="font-header text-xl">Agent Next Steps</h3>
-           </div>
-           
-           <div className="space-y-6">
+              <p className="text-[10px] italic text-blue-600 text-center mt-12 leading-relaxed">
+                Financial amounts and account details are<br/>masked for buyer privacy.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h3 className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] flex items-center gap-3 mb-8">
+              <div className="w-1 h-6 bg-slate-900 rounded-full"></div>
+              ACTIVITY JOURNAL
+            </h3>
+            <div className="bg-slate-50 border border-slate-100 rounded-[48px] p-10 space-y-8">
               {[
-                { task: 'Confirm In-Person Attendance at Pine Creek Dr', time: 'Priority High', status: 'Awaiting Confirmation' },
-                { task: 'Audit Final Closing Disclosure Figures', time: 'Priority High', status: 'Pending' },
-                { task: 'Verify Seller Wire Instructions via Stripe', time: 'Priority Normal', status: 'In Progress' },
-                { task: 'Secure Original Notary Credentials', time: 'Target: Feb 18', status: 'Scheduled' }
+                { task: 'Lender order received & verified', by: 'LENDER', time: 'Feb 19, 11:20 AM' },
+                { task: 'Title commitment issued', by: 'TITLE', time: 'Feb 18, 4:33 PM' },
+                { task: 'Earnest money initiated', by: 'BUYER', time: 'Feb 15, 2:10 PM' },
+                { task: 'Buyer completed identity verification', by: 'BUYER', time: 'Feb 14, 9:42 AM' }
               ].map((item, i) => (
-                <div key={i} className="flex items-center justify-between p-4 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-colors cursor-pointer">
-                   <div className="flex items-center gap-4">
-                      <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                      <div>
-                        <p className="text-sm font-bold">{item.task}</p>
-                        <p className="text-[9px] font-black text-slate-500 uppercase tracking-widest">{item.time}</p>
-                      </div>
-                   </div>
-                   <span className="px-3 py-1 bg-white/10 rounded-full text-[8px] font-black uppercase tracking-widest">{item.status}</span>
+                <div key={i} className="flex gap-4">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-1.5 shrink-0"></div>
+                  <div>
+                    <p className="text-sm font-bold text-slate-900">{item.task}</p>
+                    <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mt-1">
+                      {item.by} &nbsp;•&nbsp; {item.time}
+                    </p>
+                  </div>
                 </div>
               ))}
-           </div>
-         </div>
+            </div>
+          </div>
+
+          <div className="space-y-4 pt-8">
+            <button className="w-full py-5 bg-slate-900 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-xl active:scale-95 transition-all">
+              MESSAGE TITLE TEAM
+            </button>
+            <button className="w-full py-5 bg-white border-2 border-slate-100 text-slate-900 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:border-slate-200 active:scale-95 transition-all">
+              MESSAGE BUYER
+            </button>
+            <button className="w-full py-5 bg-white border-2 border-slate-100 text-slate-900 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:border-slate-200 active:scale-95 transition-all">
+              DOWNLOAD COMMITMENT
+            </button>
+            <button className="w-full py-5 bg-white border-2 border-slate-100 text-slate-900 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:border-slate-200 active:scale-95 transition-all">
+              VIEW CLOSING DETAILS
+            </button>
+            <div className="text-center pt-4">
+              <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">READ-ONLY ACCESS</p>
+              <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-1">AUDIT LOGGING ENABLED: 2/22/2026</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

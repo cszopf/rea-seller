@@ -172,24 +172,40 @@ export const TransactionContent: React.FC<StepProps> = ({
     case TransactionStep.STARTED:
       return (
         <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
-          <StepHeader stepNum={1} title="Sale Initiated" subtitle={`Managing the transfer for ${REAL_PROPERTY_MOCK.address}.`} brand={brand} />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="p-8 bg-slate-50 border border-slate-100 rounded-3xl shadow-sm">
-              <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Sale Price</p>
-              <p className="font-black text-slate-900 text-2xl tracking-tighter">${REAL_PROPERTY_MOCK.salePrice.toLocaleString()}</p>
+          <div className="flex items-center gap-3 mb-4">
+            <span className="text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded bg-[#64CCC9] text-white">STEP 1 OF 9</span>
+            <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Transaction Phase</span>
+          </div>
+          <h2 className="font-header text-6xl mb-8 tracking-tighter text-[#004EA8] uppercase">
+            TRANSACTION STARTED
+          </h2>
+          <p className="text-xl font-bold text-slate-600 mb-12">
+            We are processing File #{REAL_PROPERTY_MOCK.parcelId} for the purchase of {REAL_PROPERTY_MOCK.address}.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="p-8 bg-slate-50 border border-slate-100 rounded-3xl">
+              <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-2">SALE PRICE</p>
+              <p className="font-black text-slate-900 text-3xl tracking-tight">${REAL_PROPERTY_MOCK.salePrice.toLocaleString()}</p>
             </div>
-            <div className="p-8 bg-blue-50 border border-blue-100 rounded-3xl shadow-sm">
-              <p className="text-[10px] font-black text-blue-600 uppercase tracking-widest mb-2">Estimated Net proceeds</p>
-              <p className="font-black text-[#004EA8] text-2xl tracking-tighter">${REAL_PROPERTY_MOCK.estimatedNet.toLocaleString()}</p>
+            <div className="p-8 bg-slate-50 border border-slate-100 rounded-3xl">
+              <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-2">LENDER</p>
+              <p className="font-black text-slate-900 text-3xl tracking-tight uppercase">{REAL_PROPERTY_MOCK.lender}</p>
+            </div>
+            <div className="p-8 bg-slate-50 border border-slate-100 rounded-3xl">
+              <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-2">BUYER(S)</p>
+              <p className="font-black text-slate-900 text-3xl tracking-tight uppercase">{REAL_PROPERTY_MOCK.buyerName}</p>
+            </div>
+            <div className="p-8 bg-slate-50 border border-slate-100 rounded-3xl">
+              <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-2">SELLER(S)</p>
+              <p className="font-black text-slate-900 text-3xl tracking-tight uppercase">{REAL_PROPERTY_MOCK.sellerName}</p>
+            </div>
+            <div className="p-8 bg-slate-50 border border-slate-100 rounded-3xl md:col-span-2">
+              <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-2">TARGET CLOSING DATE</p>
+              <p className="font-black text-slate-900 text-3xl tracking-tight">{REAL_PROPERTY_MOCK.closingDate}</p>
             </div>
           </div>
-          <WhatToExpect 
-            level={level}
-            estTime="5 Mins"
-            simple="We've launched your transaction. Relax, we'll guide you through the essentials."
-            standard="This starts your file. We're correlating your purchase contract with county tax records to prepare your closing package."
-            thorough="Formal intake protocol initiated. We are correlating the Executed Purchase Contract with Parcel ID 2510-078-Woodb to establish vesting priority and digital chain of custody."
-          />
+          
           <NavActions onNext={onNext} onBack={onBack} brand={brand} showBack={false} nextLabel="Confirm & Continue" />
         </div>
       );

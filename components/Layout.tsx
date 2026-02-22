@@ -16,19 +16,42 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ brand, agent, children, propertyAddress, role, userName, showWelcome = true, level = 'standard' }) => {
   return (
     <div className="min-h-screen bg-white flex flex-col md:flex-row overflow-y-auto">
-      {/* Sidebar - Desktop */}
-      <aside 
-        className="w-full md:w-80 bg-slate-50 border-r border-slate-200 flex flex-col p-8 h-auto shrink-0 z-20 shadow-sm md:shadow-none"
-      >
-        <div className="mb-12">
+      {/* Mobile Agent Header (Visible on Mode Selection) */}
+      {!showWelcome && (
+        <div className="md:hidden bg-slate-50 border-b border-slate-200 p-4 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="relative">
+              <img src={agent.image} className="w-10 h-10 rounded-xl border border-white shadow-sm" alt={agent.name} />
+              <div className="absolute -bottom-1 -right-1 bg-blue-600 text-white p-0.5 rounded-full border border-white">
+                <svg className="w-1.5 h-1.5" fill="currentColor" viewBox="0 0 20 20"><path d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg>
+              </div>
+            </div>
+            <div>
+              <p className="text-[10px] font-black text-slate-900 uppercase tracking-tighter">{agent.name}</p>
+              <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Smart Verified Agent</p>
+            </div>
+          </div>
           <h1 
-            className="font-header uppercase-tracking-150 text-2xl mb-1" 
+            className="font-header uppercase-tracking-150 text-sm" 
             style={{ color: brand.primaryColor }}
           >
             {brand.logoName}
           </h1>
+        </div>
+      )}
+
+      {/* Sidebar - Desktop */}
+      <aside 
+        className="w-full md:w-80 bg-slate-50 border-r border-slate-200 flex flex-col p-8 md:h-screen md:sticky md:top-0 shrink-0 z-20 shadow-sm md:shadow-none"
+      >
+        <div className="mb-12">
+          <img 
+            src="https://images.squarespace-cdn.com/content/v1/5f4d40b11b4f1e6a11b920b5/1598967776211-2JVFU1R4U8PQM71BWUVE/WorldClassTitle_Logos-RGB-Primary.png?format=1500w" 
+            alt={brand.logoName} 
+            className="h-12 w-auto mb-2"
+          />
           <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">
-            Transaction Center
+            powered by smart
           </p>
         </div>
 

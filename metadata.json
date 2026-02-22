@@ -1,6 +1,6 @@
 {
-  "name": "Smart Transaction ONE - Seller",
-  "description": "A premium, white-label real estate transaction and post-closing ownership protection platform branded for World Class Title (WCT).",
+  "name": "World Class Title - Smart Transaction ONE",
+  "description": "A premium, white-label real estate transaction and post-closing ownership protection platform for World Class Title (WCT), powered by Smart.",
   "requestFramePermissions": [
     "camera"
   ]

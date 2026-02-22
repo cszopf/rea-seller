@@ -15,10 +15,10 @@ export const WCT_BRAND: BrandConfig = {
 
 export const PARTNER_BRAND: BrandConfig = {
   logoName: 'PREMIER SETTLEMENT',
-  primaryColor: '#2D3748',
-  accentColor: '#F56565',
-  lightBlue: '#E2E8F0',
-  grayBlue: '#A0AEC0',
+  primaryColor: '#1E293B',
+  accentColor: '#F43F5E',
+  lightBlue: '#F8FAFC',
+  grayBlue: '#64748B',
   headerFont: 'Nunito Sans',
   bodyFont: 'Nunito Sans',
   contactEmail: 'help@premiertitle.com',
@@ -26,26 +26,27 @@ export const PARTNER_BRAND: BrandConfig = {
 };
 
 export const MOCK_AGENT: AgentInfo = {
-  name: 'Brad Winter',
-  brokerage: 'Engel & Völkers',
-  phone: '(614) 555-9876',
-  email: 'brad.winter@evrealestate.com',
-  image: 'https://lh3.googleusercontent.com/p/AF1QipOkrIorXdmXPyQ6FPPlkcHK2asf8FL5hNuYw-hy=s1360-w1360-h1020-rw',
-  rating: 4.98,
-  reviewCount: 215,
+  name: 'Alex Sterling',
+  brokerage: 'Premier Realty Group',
+  phone: '(555) 123-4567',
+  email: 'alex.sterling@premierrealty.com',
+  image: 'https://lh7-rt.googleusercontent.com/docsz/AD_4nXfMigqui5ndpdKN3S6sxojKlE8injrtXtcA5wk_Uv_lEWK3UhqOFbWhsA9urfjEUkS4Nbr81QuQfvtYoCYLKiZUmWb2nm1HGiJejddQC2f0yOr5Z46SG56A_BHUOA19hKY1QGZtroaJxOpjcMlLY5A84P9hZc8?key=kl0MF71HcvaAWt9zvK_MLQ',
+  rating: 4.99,
+  reviewCount: 482,
   isVerified: true,
   reviewSource: 'Google'
 };
 
 export const REAL_PROPERTY_MOCK = {
-  address: "5175 WOODBRIDGE AVENUE",
-  cityStateZip: "POWELL, OH 43065",
-  parcelId: "2510-078-Woodb",
-  salePrice: 1260000,
-  mortgagePayoff: 742000,
-  estimatedNet: 468000,
-  buyerName: "DOUGLAS & CARA O'CONNOR",
-  sellerName: "PATRICK T. O'LAUGHLIN, TRUSTEE",
-  lender: "LOWER, LLC",
-  closingDate: "02/18/2026"
+  address: "1234 HIGH STREET",
+  cityStateZip: "COLUMBUS, OH 43215",
+  parcelId: "010-123456-00",
+  salePrice: 450000,
+  mortgagePayoff: 285000,
+  estimatedNet: 165000,
+  buyerName: "ROBERT SMITH",
+  sellerName: "JOHN & JANE DOE",
+  lender: "OHIO FIRST BANK",
+  closingDate: "03/15/2026",
+  contractDate: "Feb 12, 2025"
 };
