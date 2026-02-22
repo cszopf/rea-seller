@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import Layout from './components/Layout';
 import { TransactionContent } from './components/TransactionSteps';
 import SmartOneDashboard from './components/SmartOneDashboard';
@@ -197,6 +198,8 @@ const App: React.FC = () => {
           </span>
         </button>
       </div>
+
+      <Analytics />
     </div>
   );
 };
